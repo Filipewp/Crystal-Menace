@@ -4,11 +4,22 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    public float health = 50f;
-    public void TakeDamage(float amount)
+    public int maxHealth = 50;
+    public int currentHealth;
+  
+    public bool isPlayer = false;
+
+
+    void Start()
     {
-        health -= amount;
-        if(health <= 0f)
+        currentHealth = maxHealth;
+       
+    }
+    public void TakeDamage(int amount)
+    {
+        currentHealth -= amount;
+       
+        if (currentHealth <= 0f)
         {
             Die();
         }
@@ -16,6 +27,11 @@ public class Target : MonoBehaviour
 
     void Die()
     {
-        Destroy(gameObject);
+        if (isPlayer == false)
+        {
+            Destroy(gameObject);
+        }
+       
+
     }
 }
