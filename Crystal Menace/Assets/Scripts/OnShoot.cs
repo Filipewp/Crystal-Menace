@@ -10,14 +10,17 @@ public class OnShoot : MonoBehaviour
     private Animator _animator;
     public GameObject replacement;
     public GameObject headPart;
-    public NavMeshAgent Dead;
-    public Canvas canv;
+    public GameObject Mainbody;
+    public GameObject bodyToVanish;
+    //public NavMeshAgent Dead;
+    //public Canvas canv;
 
     public float health = 50f;
 
     public void Start()
     {
         _animator = parent.GetComponent<Animator>();
+        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -36,14 +39,19 @@ public class OnShoot : MonoBehaviour
         health -= amount;
         if (health <= 0f)
         {
-            canv.enabled = false;
+            // canv.enabled = false;
+            
             _animator.enabled = false;
             GameObject clone = GameObject.Instantiate(replacement, parent.transform.position, parent.transform.rotation);
             Destroy(partToVanish);
-            Dead.isStopped = true;
+            GameObject cloneBody = GameObject.Instantiate(Mainbody, parent.transform.position, parent.transform.rotation);
+            Destroy(bodyToVanish);
+           // Dead.isStopped = true;
             Destroy(parent, 10.0f);
             Destroy(clone, 10.0f);
+            Destroy(cloneBody, 10.0f);
         }
 
     }
+    
 }

@@ -11,8 +11,19 @@ public class Player : MonoBehaviour
     private bool Mutation = false;
     public Camera ThirdPersonCam;
     public Camera AimCam;
+    public GameObject Gun;
 
-    
+    public GameObject spawn1;
+    public GameObject spawn2;
+    public GameObject spawn3;
+    public GameObject spawn4;
+    public GameObject spawn5;
+    public GameObject spawn6;
+    public GameObject spawn7;
+    public GameObject spawn8;
+    public GameObject spawn9;
+    public GameObject spawn10;
+    public GameObject EnemyPawn;
 
     public float speed = 10f;
     public Rigidbody rb;
@@ -123,16 +134,28 @@ public class Player : MonoBehaviour
                 DoorUnlock.Locked = false;
                 ElevatorUnlock.Locked = false;
                 Destroy(Card);
+                GameObject clone1 = GameObject.Instantiate(EnemyPawn, spawn1.transform.position, spawn1.transform.rotation);
+                GameObject clone2 = GameObject.Instantiate(EnemyPawn, spawn2.transform.position, spawn2.transform.rotation);
+                GameObject clone3 = GameObject.Instantiate(EnemyPawn, spawn3.transform.position, spawn3.transform.rotation);
+                GameObject clone4 = GameObject.Instantiate(EnemyPawn, spawn4.transform.position, spawn4.transform.rotation);
+                GameObject clone5 = GameObject.Instantiate(EnemyPawn, spawn5.transform.position, spawn5.transform.rotation);
+                GameObject clone6 = GameObject.Instantiate(EnemyPawn, spawn6.transform.position, spawn6.transform.rotation);
+                GameObject clone7 = GameObject.Instantiate(EnemyPawn, spawn7.transform.position, spawn7.transform.rotation);
+                GameObject clone8 = GameObject.Instantiate(EnemyPawn, spawn8.transform.position, spawn8.transform.rotation);
+                GameObject clone9 = GameObject.Instantiate(EnemyPawn, spawn9.transform.position, spawn9.transform.rotation);
+                GameObject clone10 = GameObject.Instantiate(EnemyPawn, spawn10.transform.position, spawn10.transform.rotation);
             }
         }
         if (other.tag == "Symb")
         {
+            instructions.SetActive(true);
             Dam = damage.GetComponent<GunSystem>();
             if (Input.GetKeyDown(KeyCode.E))
             {
+               
                 Mutation = true;
                 InvokeRepeating("Scale", 0.0f, 0.01f);
-               
+                Destroy(Gun);
                 Dam.damage = 10;
             }
         }
@@ -142,8 +165,15 @@ public class Player : MonoBehaviour
         if (other.tag == "Card")
         {
             instructions.SetActive(false);
+          
+        }
+        if (other.tag == "Symb")
+        {
+            instructions.SetActive(false);
+
         }
     }
+  
     void Scale()
     {
         if (shapeScale >= 100.0f)

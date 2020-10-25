@@ -118,7 +118,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 635025c69ef1bb14abd4750ffab2a718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 13.5
+  speed: 6
   attackRange: 3
   hitBox: {fileID: 0}
 --- !u!1101 &2057062756093994905

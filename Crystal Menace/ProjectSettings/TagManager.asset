@@ -8,6 +8,7 @@ TagManager:
   - GeneratorPc
   - Card
   - Symb
+  - Enemy
   layers:
   - Default
   - TransparentFX
