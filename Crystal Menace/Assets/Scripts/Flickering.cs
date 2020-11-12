@@ -5,10 +5,11 @@ using UnityEngine;
 public class Flickering : MonoBehaviour
 {
     public bool isFlickering = false;
+    public bool stop = false;
     public float timeDelay;
     void Update()
     {
-        if (isFlickering == false)
+        if (isFlickering == false && stop == false)
         {
             StartCoroutine(FlickeringLight());
         }

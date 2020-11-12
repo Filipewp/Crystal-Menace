@@ -9,6 +9,7 @@ TagManager:
   - Card
   - Symb
   - Enemy
+  - Light
   layers:
   - Default
   - TransparentFX
