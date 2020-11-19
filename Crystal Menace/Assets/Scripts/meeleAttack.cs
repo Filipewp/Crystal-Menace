@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class meeleAttack : MonoBehaviour
 {
-    public int attackDamage = 20;
+    public int attackDamage = 5;
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GunSystem : MonoBehaviour
 {
-    //Gun stats
+       //Gun stats
     public int damage;
     public float timeBetweenShooting, spread, range, reloadTime, timeBetweenShots;
     public int magazineSize, bulletsPerTap;
@@ -23,23 +23,32 @@ public class GunSystem : MonoBehaviour
     //public Transform attackPoint;
     public RaycastHit rayHit;
     public LayerMask whatIsEnemy;
+    Text ammoText;
+    public GameObject barrel;
 
     // //Graphics
     // public GameObject muzzleFlash, bulletHoleGraphic;
-   
-   
+
+
     //public TextMeshProUGUI text;
-   
+
+    void Start()
+    {
+       
+    }
 
     private void Awake()
     {
+        
         bulletsLeft = magazineSize;
         readyToShoot = true;
+        ammoText = GetComponent<Text>();
     }
     private void Update()
     {
         MyInput();
 
+        ammoText.text = bulletsLeft.ToString();
         //SetText
         //text.SetText(bulletsLeft + " / " + magazineSize);
     }
@@ -83,16 +92,19 @@ public class GunSystem : MonoBehaviour
         //RayCast
         if (Physics.Raycast(GunBarrel.transform.position, direction, out rayHit, range, whatIsEnemy))
         {
-            Debug.DrawRay(transform.position, transform.forward, Color.green); print("Hit");
-            Debug.Log(rayHit.collider.name);
-
             Target target = rayHit.transform.GetComponent<Target>();
+           
             if (target != null)
             {
                 
                 target.TakeDamage(damage);
             }
+            AIRagdoll rag = rayHit.transform.GetComponent<AIRagdoll>();
+            if (rag != null)
+            {
 
+                rag.TakeDamage(damage);
+            }
             OnShoot part = rayHit.transform.GetComponent<OnShoot>();
             if (part != null)
             {
