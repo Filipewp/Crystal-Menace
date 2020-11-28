@@ -13,6 +13,10 @@ public class Player : MonoBehaviour
     public Camera AimCam;
     public GameObject Gun;
 
+    public AudioClip[] dialoguesSymb;
+    public AudioSource audSource;
+    public GameObject trigger;
+
     public GameObject spawn1;
     public GameObject spawn2;
     public GameObject spawn3;
@@ -122,7 +126,7 @@ public class Player : MonoBehaviour
 
 
     }
-    private void OnTriggerStay(Collider other)
+    private IEnumerator OnTriggerStay(Collider other)
     {
         if (other.tag == "Card")
         {
@@ -152,11 +156,30 @@ public class Player : MonoBehaviour
             Dam = damage.GetComponent<GunSystem>();
             if (Input.GetKeyDown(KeyCode.E))
             {
-               
+                instructions.SetActive(false);
                 Mutation = true;
                 InvokeRepeating("Scale", 0.0f, 0.01f);
                 Destroy(Gun);
                 Dam.damage = 10;
+                
+                trigger.SetActive(false);
+                //1.Loop through each AudioClip
+                for (int i = 0; i < dialoguesSymb.Length; i++)
+                {
+                    //2.Assign current AudioClip to audiosource
+                    audSource.clip = dialoguesSymb[i];
+
+                    //3.Play Audio
+                    audSource.Play();
+
+                    //4.Wait for it to finish playing
+                    while (audSource.isPlaying)
+                    {
+                        yield return null;
+                    }
+                }
+
+                
             }
         }
     }

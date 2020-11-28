@@ -17,6 +17,7 @@ public class OnShoot : MonoBehaviour
     public GameObject Mainbody;
     public GameObject bodyToVanish;
     public AIRagdoll headGone;
+    
     //public Canvas canv;
 
     public float health = 50f;
@@ -53,8 +54,9 @@ public class OnShoot : MonoBehaviour
            // Dead.isStopped = true;
             Destroy(parent, 10.0f);
             Destroy(clone, 10.0f);
-            //Destroy(cloneBody, 10.0f);
+           //Destroy(cloneBody, 10.0f);
             headGone.headVanish = true;
+            
             foreach (Rigidbody rigidbody in ragdoll)
             {
                 rigidbody.isKinematic = false;

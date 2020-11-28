@@ -8,7 +8,7 @@ public class AIRagdoll : MonoBehaviour
 {
     public Rigidbody[] ragdoll;
     public int currentHealth;
-
+    public Rigidbody body;
     public bool headVanish;
 
     public NavMeshAgent agent;
@@ -33,6 +33,11 @@ public class AIRagdoll : MonoBehaviour
        
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
+        if(headVanish == true)
+        {
+            agent.enabled = false;
+            //body.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
+        }
 
         if (!playerInAttackRange && headVanish == false)
         {

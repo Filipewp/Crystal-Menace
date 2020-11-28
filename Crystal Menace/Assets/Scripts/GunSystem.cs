@@ -11,8 +11,9 @@ public class GunSystem : MonoBehaviour
     public int magazineSize, bulletsPerTap;
     public bool allowButtonHold;
     int bulletsLeft, bulletsShot;
-   
-  
+
+    public AudioStory audioBool;
+       
     //bools 
     bool shooting, readyToShoot, reloading;
 
@@ -43,6 +44,7 @@ public class GunSystem : MonoBehaviour
         bulletsLeft = magazineSize;
         readyToShoot = true;
         ammoText = GetComponent<Text>();
+       
     }
     private void Update()
     {
@@ -92,28 +94,35 @@ public class GunSystem : MonoBehaviour
         //RayCast
         if (Physics.Raycast(GunBarrel.transform.position, direction, out rayHit, range, whatIsEnemy))
         {
+            GameObject Audio = GameObject.FindGameObjectWithTag("Player");
+            audioBool = Audio.GetComponent<AudioStory>();
             Target target = rayHit.transform.GetComponent<Target>();
            
             if (target != null)
             {
-                
+                audioBool.shootHit = true;
                 target.TakeDamage(damage);
+               
             }
             AIRagdoll rag = rayHit.transform.GetComponent<AIRagdoll>();
             if (rag != null)
             {
-
+                audioBool.shootHit = true;
                 rag.TakeDamage(damage);
             }
             OnShoot part = rayHit.transform.GetComponent<OnShoot>();
             if (part != null)
             {
+                
                 part.Vanish(damage);
+                audioBool.shootHit = true;
             }
             //if (rayHit.collider.CompareTag("Enemy"))
             //    rayHit.collider.GetComponent<ShootingAi>().TakeDamage(damage);
             GameObject impactGO = Instantiate(impactEffect, rayHit.point, Quaternion.LookRotation(rayHit.normal));
             Destroy(impactGO, 2f);
+           
+
         }
 
         //ShakeCamera

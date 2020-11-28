@@ -10,6 +10,8 @@ public class DoorController : MonoBehaviour
     public GameObject LockText;
     public GameObject instructions;
     public GameObject DoorGene, LockMiddle, Elevator;
+    public AudioClip DoorLocked;
+    public AudioSource DoorAudio;
 
    
     void Update()
@@ -40,6 +42,8 @@ public class DoorController : MonoBehaviour
             else if(Input.GetKeyDown(KeyCode.E) && (Locked == true))
             {
                 LockText.SetActive(true);
+                DoorAudio.clip = DoorLocked;
+                DoorAudio.Play();
             }
         }
        

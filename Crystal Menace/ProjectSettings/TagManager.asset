@@ -10,6 +10,11 @@ TagManager:
   - Symb
   - Enemy
   - Light
+  - Trigger1
+  - Trigger2
+  - Trigger3
+  - Trigger4
+  - Trigger5
   layers:
   - Default
   - TransparentFX

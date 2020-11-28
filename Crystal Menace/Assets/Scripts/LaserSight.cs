@@ -22,7 +22,7 @@ public class LaserSight : MonoBehaviour
 
         laser = GetComponent<LineRenderer>();
         GetComponent<LineRenderer>().enabled = false;
-        lightCollider.GetComponent<Light>().enabled = false;
+        //lightCollider.GetComponent<Light>().enabled = false;
     }
 
     void LateUpdate()
