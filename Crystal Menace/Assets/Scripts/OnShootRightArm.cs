@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class OnShoot : MonoBehaviour
+public class OnShootRightArm : MonoBehaviour
 {
     //bomb effect
 
@@ -13,20 +12,19 @@ public class OnShoot : MonoBehaviour
     public float upForce = 1.0f;
     Collider coll;
 
-    public Rigidbody[] ragdoll;
+    //public Rigidbody[] ragdoll;
 
     public int currentHealth;
 
     public GameObject parent;
-    public GameObject positionHead;
     public GameObject partToVanish;
     private Animator _animator;
     public GameObject replacement;
     public GameObject headPart;
     public GameObject Mainbody;
     public GameObject bodyToVanish;
-    public AIRagdoll headGone;
-    
+    public AIRagdoll rightArmGone;
+
     //public Canvas canv;
 
     public float health = 50f;
@@ -37,7 +35,7 @@ public class OnShoot : MonoBehaviour
         coll = GetComponent<Collider>();
     }
 
-   
+
 
     public void Vanish(float amount)
     {
@@ -45,26 +43,26 @@ public class OnShoot : MonoBehaviour
         if (health <= 0f)
         {
             // canv.enabled = false;
-            
+
             //_animator.enabled = false;
-            GameObject clone = GameObject.Instantiate(replacement, positionHead.transform.position, positionHead.transform.rotation);
+            GameObject clone = GameObject.Instantiate(replacement, parent.transform.position, parent.transform.rotation);
             Destroy(partToVanish);
             Detonate();
             coll.enabled = false;
             //GameObject cloneBody = GameObject.Instantiate(Mainbody, parent.transform.position, parent.transform.rotation);
             //Destroy(bodyToVanish);
             // Dead.isStopped = true;
-            headGone.headVanish = true;
+            rightArmGone.rightArmVanish = true;
             //Destroy(parent, 10.0f);
             Destroy(clone, 10.0f);
-           //Destroy(cloneBody, 10.0f);
-           
-            
+            //Destroy(cloneBody, 10.0f);
+
+
             //foreach (Rigidbody rigidbody in ragdoll)
             //{
             //    rigidbody.isKinematic = false;
             //}
-           
+
         }
 
     }

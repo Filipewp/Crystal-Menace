@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class OnShoot : MonoBehaviour
+public class OnShootHip : MonoBehaviour
 {
     //bomb effect
 
@@ -13,20 +12,25 @@ public class OnShoot : MonoBehaviour
     public float upForce = 1.0f;
     Collider coll;
 
-    public Rigidbody[] ragdoll;
+    //public Rigidbody[] ragdoll;
 
     public int currentHealth;
 
     public GameObject parent;
-    public GameObject positionHead;
     public GameObject partToVanish;
     private Animator _animator;
     public GameObject replacement;
+    public GameObject head;
+    public GameObject chest;
+    public GameObject rightArm;
+    public GameObject leftArm;
+    public GameObject rightLeg;
+    public GameObject leftLeg;
     public GameObject headPart;
     public GameObject Mainbody;
     public GameObject bodyToVanish;
-    public AIRagdoll headGone;
-    
+    public AIRagdoll hipGone;
+
     //public Canvas canv;
 
     public float health = 50f;
@@ -37,7 +41,7 @@ public class OnShoot : MonoBehaviour
         coll = GetComponent<Collider>();
     }
 
-   
+
 
     public void Vanish(float amount)
     {
@@ -45,26 +49,39 @@ public class OnShoot : MonoBehaviour
         if (health <= 0f)
         {
             // canv.enabled = false;
-            
+
             //_animator.enabled = false;
-            GameObject clone = GameObject.Instantiate(replacement, positionHead.transform.position, positionHead.transform.rotation);
+            GameObject clone = GameObject.Instantiate(replacement, parent.transform.position, parent.transform.rotation);
+            GameObject clone1 = GameObject.Instantiate(head, parent.transform.position, parent.transform.rotation);
+            GameObject clone2 = GameObject.Instantiate(chest, parent.transform.position, parent.transform.rotation);
+            GameObject clone3 = GameObject.Instantiate(rightArm, parent.transform.position, parent.transform.rotation);
+            GameObject clone4 = GameObject.Instantiate(leftArm, parent.transform.position, parent.transform.rotation);
+            GameObject clone5 = GameObject.Instantiate(rightLeg, parent.transform.position, parent.transform.rotation);
+            GameObject clone6 = GameObject.Instantiate(leftLeg, parent.transform.position, parent.transform.rotation);
             Destroy(partToVanish);
             Detonate();
             coll.enabled = false;
-            //GameObject cloneBody = GameObject.Instantiate(Mainbody, parent.transform.position, parent.transform.rotation);
-            //Destroy(bodyToVanish);
+           
+            Destroy(bodyToVanish);
             // Dead.isStopped = true;
-            headGone.headVanish = true;
+            hipGone.hipVanish = true;
             //Destroy(parent, 10.0f);
             Destroy(clone, 10.0f);
-           //Destroy(cloneBody, 10.0f);
+            Destroy(clone1, 10.0f);
+            Destroy(clone2, 10.0f);
+            Destroy(clone3, 10.0f);
+            Destroy(clone4, 10.0f);
+            Destroy(clone5, 10.0f);
+            Destroy(clone6, 10.0f);
            
-            
+
+
+
             //foreach (Rigidbody rigidbody in ragdoll)
             //{
             //    rigidbody.isKinematic = false;
             //}
-           
+
         }
 
     }

@@ -104,17 +104,54 @@ public class GunSystem : MonoBehaviour
                 target.TakeDamage(damage);
                
             }
-            AIRagdoll rag = rayHit.transform.GetComponent<AIRagdoll>();
-            if (rag != null)
-            {
-                audioBool.shootHit = true;
-                rag.TakeDamage(damage);
-            }
+            
             OnShoot part = rayHit.transform.GetComponent<OnShoot>();
             if (part != null)
             {
                 
                 part.Vanish(damage);
+                audioBool.shootHit = true;
+            }
+            OnShootChest chestPart = rayHit.transform.GetComponent<OnShootChest>();
+            if (chestPart != null)
+            {
+
+                chestPart.Vanish(damage);
+                audioBool.shootHit = true;
+            }
+            OnShootHip hipPart = rayHit.transform.GetComponent<OnShootHip>();
+            if (hipPart != null)
+            {
+
+                hipPart.Vanish(damage);
+                audioBool.shootHit = true;
+            }
+            OnShootLeftArm leftArmPart = rayHit.transform.GetComponent<OnShootLeftArm>();
+            if (leftArmPart != null)
+            {
+
+                leftArmPart.Vanish(damage);
+                audioBool.shootHit = true;
+            }
+            OnShootRightArm rightArmPart = rayHit.transform.GetComponent<OnShootRightArm>();
+            if (rightArmPart != null)
+            {
+
+                rightArmPart.Vanish(damage);
+                audioBool.shootHit = true;
+            }
+            OnShootLeftLeg leftLegPart = rayHit.transform.GetComponent<OnShootLeftLeg>();
+            if (leftLegPart != null)
+            {
+
+                leftLegPart.Vanish(damage);
+                audioBool.shootHit = true;
+            }
+            OnShootRightLeg rightLegPart = rayHit.transform.GetComponent<OnShootRightLeg>();
+            if (rightLegPart != null)
+            {
+
+                rightLegPart.Vanish(damage);
                 audioBool.shootHit = true;
             }
             //if (rayHit.collider.CompareTag("Enemy"))
