@@ -15,6 +15,7 @@ TagManager:
   - Trigger3
   - Trigger4
   - Trigger5
+  - meleeAttack
   layers:
   - Default
   - TransparentFX

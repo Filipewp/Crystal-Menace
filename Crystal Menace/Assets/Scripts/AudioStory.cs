@@ -24,7 +24,7 @@ public class AudioStory : MonoBehaviour
         //}
     }
 
-    IEnumerator OnShoot()
+    IEnumerator OnShooty()
     {
         if (shootHit == true)
         {

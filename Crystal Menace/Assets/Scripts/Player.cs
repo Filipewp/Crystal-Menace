@@ -1,17 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    
+    public GameObject doorControl;
     public GameObject Door, Elevator, Card, instructions, damage;
     private float shapeScale ;
-    GunSystem Dam;
+    public GameObject CanvasReal;
+    public GameObject CanvasFake;
+    public GameObject LaserSymb;
+    public GameObject LaserNormal;
+
     DoorController DoorUnlock, ElevatorUnlock;
     private bool Mutation = false;
     public Camera ThirdPersonCam;
     public Camera AimCam;
     public GameObject Gun;
+
+    private int _attackTrigger = 0;
 
     public AudioClip[] dialoguesSymb;
     public AudioSource audSource;
@@ -27,6 +36,7 @@ public class Player : MonoBehaviour
     public GameObject spawn8;
     public GameObject spawn9;
     public GameObject spawn10;
+    public GameObject spawn11;
     public GameObject EnemyPawn;
 
     public float speed = 10f;
@@ -34,7 +44,7 @@ public class Player : MonoBehaviour
 
     bool doubleTap;
     public bool OnGround;
-    Animator animator;
+    public Animator animator;
     Vector2 input;
     public Transform prefab;
 
@@ -47,7 +57,11 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-
+        _attackTrigger = Animator.StringToHash("AttackTrigger");
+        CanvasReal.GetComponentInChildren<Text>().enabled = false;
+        CanvasReal.GetComponentInChildren<Image>().enabled = false;
+        CanvasFake.GetComponentInChildren<GunSystem>().damage = 0;
+        LaserSymb.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -65,6 +79,11 @@ public class Player : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         float vertical = Input.GetAxis("Vertical") * Time.deltaTime * speed;
 
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+             horizontal = Input.GetAxis("Horizontal") * Time.deltaTime * speed*30;
+             vertical = Input.GetAxis("Vertical") * Time.deltaTime * speed*30;
+        }
         ThirdPersonCam.GetComponent<Camera>().enabled = true;
         AimCam.GetComponent<Camera>().enabled = false;
 
@@ -121,6 +140,14 @@ public class Player : MonoBehaviour
             OnGround = false;
         }
 
+        if (Input.GetKeyDown(KeyCode.V) )
+        {
+           
+            animator.SetTrigger(_attackTrigger);
+           
+        }
+
+
 
 
 
@@ -153,15 +180,22 @@ public class Player : MonoBehaviour
         if (other.tag == "Symb")
         {
             instructions.SetActive(true);
-            Dam = damage.GetComponent<GunSystem>();
+            
             if (Input.GetKeyDown(KeyCode.E))
             {
                 instructions.SetActive(false);
                 Mutation = true;
                 InvokeRepeating("Scale", 0.0f, 0.01f);
                 Destroy(Gun);
-                Dam.damage = 10;
-                
+                CanvasFake.GetComponentInChildren<Text>().enabled = false;
+                CanvasFake.GetComponentInChildren<Image>().enabled = false;
+                CanvasReal.GetComponentInChildren<Text>().enabled = true;
+                CanvasReal.GetComponentInChildren<Image>().enabled = true;
+                CanvasFake.GetComponentInChildren<GunSystem>().damage = 0;
+                CanvasReal.GetComponentInChildren<GunSystem>().damage = 10;
+                LaserSymb.SetActive(true);
+                LaserNormal.SetActive(false);
+
                 trigger.SetActive(false);
                 //1.Loop through each AudioClip
                 for (int i = 0; i < dialoguesSymb.Length; i++)
@@ -178,8 +212,10 @@ public class Player : MonoBehaviour
                         yield return null;
                     }
                 }
+                GameObject clone1 = GameObject.Instantiate(EnemyPawn, spawn11.transform.position, spawn11.transform.rotation);
+                doorControl.GetComponent<DoorController>().Locked = false;
+                doorControl.GetComponentInChildren<Animator>().SetTrigger("OpenClose");
 
-                
             }
         }
     }

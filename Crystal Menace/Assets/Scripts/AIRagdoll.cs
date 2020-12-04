@@ -6,6 +6,8 @@ using UnityEngine.Assertions.Must;
 
 public class AIRagdoll : MonoBehaviour
 {
+    public int damage;
+
     public Rigidbody[] ragdoll;
     public int currentHealth;
     public Rigidbody body;
@@ -50,11 +52,14 @@ public class AIRagdoll : MonoBehaviour
     public bool playerInAttackRange;
     public bool JumpAttack;
 
+   
+
     void Start()
     {
 
         player = GameObject.FindGameObjectWithTag("Player");
-        
+       
+
 
     }
     void Update()
@@ -238,5 +243,71 @@ public class AIRagdoll : MonoBehaviour
         agent.speed = 4;
     }
 
+    void OnTriggerEnter(Collider other)
+    {
+       
+        if (other.tag == "meleeAttack")
+        {
+
+            OnShoot part = GetComponent<OnShoot>();
+            if (part != null)
+            {
+
+                part.Vanish(damage);
+               
+            }
+            OnShootChest chestPart = GetComponent<OnShootChest>();
+            if (chestPart != null)
+            {
+
+                chestPart.Vanish(damage);
+               
+            }
+            OnShootHip hipPart = GetComponent<OnShootHip>();
+            if (hipPart != null)
+            {
+
+                hipPart.Vanish(damage);
+                
+            }
+            OnShootLeftArm leftArmPart = GetComponent<OnShootLeftArm>();
+            if (leftArmPart != null)
+            {
+
+                leftArmPart.Vanish(damage);
+                
+            }
+            OnShootRightArm rightArmPart = GetComponent<OnShootRightArm>();
+            if (rightArmPart != null)
+            {
+
+                rightArmPart.Vanish(damage);
+               
+            }
+            OnShootLeftLeg leftLegPart = GetComponent<OnShootLeftLeg>();
+            if (leftLegPart != null)
+            {
+
+                leftLegPart.Vanish(damage);
+                
+            }
+            OnShootRightLeg rightLegPart = GetComponent<OnShootRightLeg>();
+            if (rightLegPart != null)
+            {
+
+                rightLegPart.Vanish(damage);
+                
+            }
+            //chestPart.Vanish(damage);
+            //hipPart.Vanish(damage);
+            //rightArmPart.Vanish(damage);
+            //leftArmPart.Vanish(damage);
+            //rightLegPart.Vanish(damage);
+            //leftLegPart.Vanish(damage);
+
+
+        }
+        
+    }
 
 }
