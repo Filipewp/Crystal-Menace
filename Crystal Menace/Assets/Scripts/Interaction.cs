@@ -10,6 +10,8 @@ public class Interaction : MonoBehaviour
     DoorController Lock;
     Flickering flick;
     public GameObject[] lightCeiling;
+    public AudioSource generator1;
+    public AudioSource generator2;
 
     void Start()
     {
@@ -29,6 +31,8 @@ public class Interaction : MonoBehaviour
 
                 anim.SetTrigger("OnButton");
                 anim1.SetTrigger("OnButton");
+                generator1.Play();
+                generator2.Play();
                 Lock.Locked = false;
                
                 foreach (GameObject objects in lightCeiling)

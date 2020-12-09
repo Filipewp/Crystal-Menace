@@ -30,12 +30,13 @@ public class SoundPlayer : MonoBehaviour
        
         if (other.tag == "Trigger1")
         {
+            float stopMove = GetComponent<Player>().speed = 0;
             //1.Loop through each AudioClip
             for (int i = 0; i < dialogues1.Length; i++)
             {
                 //2.Assign current AudioClip to audiosource
                 adSource.clip = dialogues1[i];
-
+                yield return new WaitForSeconds(1);
                 //3.Play Audio
                 adSource.Play();
 
@@ -45,6 +46,7 @@ public class SoundPlayer : MonoBehaviour
                     yield return null;
                 }
             }
+            stopMove = GetComponent<Player>().speed = 10;
         }
 
         if (other.tag == "Trigger2")
@@ -54,8 +56,9 @@ public class SoundPlayer : MonoBehaviour
             {
                 //2.Assign current AudioClip to audiosource
                 adSource.clip = dialogues2[i];
-
+                yield return new WaitForSeconds(1);
                 //3.Play Audio
+
                 adSource.Play();
 
                 //4.Wait for it to finish playing
@@ -73,6 +76,7 @@ public class SoundPlayer : MonoBehaviour
             {
                 //2.Assign current AudioClip to audiosource
                 adSource.clip = dialogues3[i];
+                yield return new WaitForSeconds(1);
 
                 //3.Play Audio
                 adSource.Play();
@@ -86,11 +90,13 @@ public class SoundPlayer : MonoBehaviour
         }
         if (other.tag == "Trigger4")
         {
+            float stopMove = GetComponent<Player>().speed = 0;
             //1.Loop through each AudioClip
             for (int i = 0; i < dialogues4.Length; i++)
             {
                 //2.Assign current AudioClip to audiosource
                 adSource.clip = dialogues4[i];
+                yield return new WaitForSeconds(1);
 
                 //3.Play Audio
                 adSource.Play();
@@ -101,14 +107,17 @@ public class SoundPlayer : MonoBehaviour
                     yield return null;
                 }
             }
+            stopMove = GetComponent<Player>().speed = 10;
         }
         if (other.tag == "Trigger5")
         {
+           
             //1.Loop through each AudioClip
             for (int i = 0; i < dialogues5.Length; i++)
             {
                 //2.Assign current AudioClip to audiosource
                 adSource.clip = dialogues5[i];
+                yield return new WaitForSeconds(1);
 
                 //3.Play Audio
                 adSource.Play();
@@ -119,6 +128,7 @@ public class SoundPlayer : MonoBehaviour
                     yield return null;
                 }
             }
+           
         }
     }
 

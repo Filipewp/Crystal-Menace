@@ -11,9 +11,12 @@ public class DoorController : MonoBehaviour
     public GameObject instructions;
     public GameObject DoorGene, LockMiddle, Elevator;
     public AudioClip DoorLocked;
+    public AudioClip DoorOpen;
+    public AudioClip DoorClose;
     public AudioSource DoorAudio;
+    public AudioSource DoorSound;
 
-   
+
     void Update()
     {
         if (Locked == true)
@@ -37,6 +40,7 @@ public class DoorController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E) && (Locked == false))
             {
                 anim.SetTrigger("OpenClose");
+                DoorSound.Play();
 
             }
             else if(Input.GetKeyDown(KeyCode.E) && (Locked == true))

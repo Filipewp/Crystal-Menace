@@ -24,7 +24,9 @@ public class Player : MonoBehaviour
 
     public AudioClip[] dialoguesSymb;
     public AudioSource audSource;
+    public AudioSource audSource2;
     public GameObject trigger;
+    public AudioSource DoorSound;
 
     public GameObject spawn1;
     public GameObject spawn2;
@@ -68,6 +70,7 @@ public class Player : MonoBehaviour
     {
         input.x = Input.GetAxis("Horizontal");
         input.y = Input.GetAxis("Vertical");
+        
 
 
         animator.SetFloat("InputX", input.x);
@@ -79,7 +82,17 @@ public class Player : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         float vertical = Input.GetAxis("Vertical") * Time.deltaTime * speed;
 
-        if(Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
+        {
+           
+            audSource2.Play();
+        }
+        else if (!Input.GetButton("Horizontal") && !Input.GetButton("Vertical") && audSource2.isPlaying)
+        {
+            audSource2.Stop();
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && (Mutation == true))
         {
              horizontal = Input.GetAxis("Horizontal") * Time.deltaTime * speed*30;
              vertical = Input.GetAxis("Vertical") * Time.deltaTime * speed*30;
@@ -140,11 +153,12 @@ public class Player : MonoBehaviour
             OnGround = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.V) )
+        if (Input.GetKeyDown(KeyCode.V) && (Mutation == true))
         {
            
             animator.SetTrigger(_attackTrigger);
-           
+            
+
         }
 
 
@@ -185,6 +199,7 @@ public class Player : MonoBehaviour
             {
                 instructions.SetActive(false);
                 Mutation = true;
+                CanvasReal.GetComponentInChildren<GunSystem>().symb = true;
                 InvokeRepeating("Scale", 0.0f, 0.01f);
                 Destroy(Gun);
                 CanvasFake.GetComponentInChildren<Text>().enabled = false;
@@ -215,7 +230,7 @@ public class Player : MonoBehaviour
                 GameObject clone1 = GameObject.Instantiate(EnemyPawn, spawn11.transform.position, spawn11.transform.rotation);
                 doorControl.GetComponent<DoorController>().Locked = false;
                 doorControl.GetComponentInChildren<Animator>().SetTrigger("OpenClose");
-
+                DoorSound.Play();
             }
         }
     }
@@ -243,6 +258,8 @@ public class Player : MonoBehaviour
         GetComponentInChildren<SkinnedMeshRenderer>().SetBlendShapeWeight(0, shapeScale++);
         GetComponentInChildren<SkinnedMeshRenderer>().SetBlendShapeWeight(1, shapeScale++);
     }
+
+    
 }
 
 

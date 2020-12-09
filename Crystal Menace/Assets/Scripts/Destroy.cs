@@ -5,6 +5,7 @@ using UnityEngine;
 public class Destroy : MonoBehaviour
 {
     public GameObject doorControl;
+    public AudioSource DoorSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,7 @@ public class Destroy : MonoBehaviour
             Destroy(GameObject.FindGameObjectWithTag("Enemy"));
             doorControl.GetComponent<DoorController>().Locked = true;
             doorControl.GetComponentInChildren<Animator>().SetTrigger("OpenClose");
-            
+            DoorSound.Play();
 
         }
     }

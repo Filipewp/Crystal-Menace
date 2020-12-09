@@ -13,7 +13,10 @@ public class GunSystem : MonoBehaviour
     int bulletsLeft, bulletsShot;
 
     public AudioStory audioBool;
-       
+    public AudioSource audioFire;
+    public AudioSource audioFireSymb;
+    public AudioSource reload;
+
     //bools 
     bool shooting, readyToShoot, reloading;
 
@@ -26,6 +29,8 @@ public class GunSystem : MonoBehaviour
     public LayerMask whatIsEnemy;
     Text ammoText;
     public GameObject barrel;
+
+    public bool symb = false;
 
     // //Graphics
     // public GameObject muzzleFlash, bulletHoleGraphic;
@@ -63,8 +68,10 @@ public class GunSystem : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading) Reload();
-
+        if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magazineSize && !reloading)
+        {
+            Reload();
+        }
         //Shoot
         if (readyToShoot && shooting && !reloading && bulletsLeft > 0)
         {
@@ -74,6 +81,14 @@ public class GunSystem : MonoBehaviour
     }
     private void Shoot()
     {
+        if (symb == false)
+        {
+            audioFire.Play();
+        }
+        if (symb == true)
+        {
+            audioFireSymb.Play();
+        }
         //Rigidbody clone;
         //clone = Instantiate(projectile, transform.position, transform.rotation);
 
@@ -183,6 +198,7 @@ public class GunSystem : MonoBehaviour
     }
     private void Reload()
     {
+        reload.Play();
         reloading = true;
         Invoke("ReloadFinished", reloadTime);
     }
