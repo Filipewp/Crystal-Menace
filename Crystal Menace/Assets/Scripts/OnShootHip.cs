@@ -30,6 +30,8 @@ public class OnShootHip : MonoBehaviour
     public GameObject Mainbody;
     public GameObject bodyToVanish;
     public AIRagdoll hipGone;
+    public AudioSource crystalSound;
+    public AudioSource deathSound;
 
     //public Canvas canv;
 
@@ -73,7 +75,8 @@ public class OnShootHip : MonoBehaviour
             Destroy(clone4, 10.0f);
             Destroy(clone5, 10.0f);
             Destroy(clone6, 10.0f);
-           
+            crystalSound.Play();
+            deathSound.Play();
 
 
 

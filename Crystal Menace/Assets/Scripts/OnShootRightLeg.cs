@@ -24,7 +24,7 @@ public class OnShootRightLeg : MonoBehaviour
     public GameObject Mainbody;
     public GameObject bodyToVanish;
     public AIRagdoll rightLegGone;
-
+    public AudioSource crystalSound;
     //public Canvas canv;
 
     public float health = 50f;
@@ -55,6 +55,7 @@ public class OnShootRightLeg : MonoBehaviour
             rightLegGone.rightLegVanish = true;
             //Destroy(parent, 10.0f);
             Destroy(clone, 10.0f);
+            crystalSound.Play();
             //Destroy(cloneBody, 10.0f);
 
 

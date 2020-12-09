@@ -23,6 +23,8 @@ public class OnShootLeftArm : MonoBehaviour
     public GameObject bodyToVanish;
     public AIRagdoll leftArmGone;
 
+    public AudioSource crystalSound;
+
     //public Canvas canv;
 
     public float health = 50f;
@@ -54,6 +56,7 @@ public class OnShootLeftArm : MonoBehaviour
             leftArmGone.leftArmVanish = true;
             //Destroy(parent, 10.0f);
             Destroy(clone, 10.0f);
+            crystalSound.Play();
             //Destroy(cloneBody, 10.0f);
 
 

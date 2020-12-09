@@ -34,6 +34,10 @@ public class AIRagdoll : MonoBehaviour
     public GameObject NoRightArmNoLeftLeg;
     public GameObject NoLeftArmNoLeftLeg;
 
+    public AudioSource chaseSound;
+    public AudioSource deathSound;
+    
+
     public NavMeshAgent agent;
     //public Transform player;
     GameObject player;
@@ -58,7 +62,7 @@ public class AIRagdoll : MonoBehaviour
     {
 
         player = GameObject.FindGameObjectWithTag("Player");
-       
+        chaseSound.Play();
 
 
     }
@@ -99,60 +103,72 @@ public class AIRagdoll : MonoBehaviour
         {
             GameObject cloneBody = GameObject.Instantiate(NoheadNoLeftArm, parent.transform.position, parent.transform.rotation);
             Destroy(bodyToVanish);
+            deathSound.Play();
             Destroy(cloneBody, 10.0f);
         }
         if (headVanish == true && rightArmVanish == true)
         {
             GameObject cloneBody = GameObject.Instantiate(NoheadNoRightArm, parent.transform.position, parent.transform.rotation);
             Destroy(bodyToVanish);
+            deathSound.Play();
             Destroy(cloneBody, 10.0f);
         }
         if (headVanish == true && leftLegVanish == true)
         {
+            
             GameObject cloneBody = GameObject.Instantiate(NoheadNoLeftLeg, parent.transform.position, parent.transform.rotation);
+            deathSound.Play();
             Destroy(bodyToVanish);
+            
             Destroy(cloneBody, 10.0f);
         }
         if (headVanish == true && rightLegVanish == true)
         {
             GameObject cloneBody = GameObject.Instantiate(NoheadNoRightLeg, parent.transform.position, parent.transform.rotation);
             Destroy(bodyToVanish);
+            deathSound.Play();
             Destroy(cloneBody, 10.0f);
         }
         if (rightArmVanish == true && leftArmVanish == true)
         {
             GameObject cloneBody = GameObject.Instantiate(NoArms, parent.transform.position, parent.transform.rotation);
             Destroy(bodyToVanish);
+            deathSound.Play();
             Destroy(cloneBody, 10.0f);
         }
         if (rightArmVanish == true && rightLegVanish == true)
         {
             GameObject cloneBody = GameObject.Instantiate(NoRightArmNoRightLeg, parent.transform.position, parent.transform.rotation);
             Destroy(bodyToVanish);
+            deathSound.Play();
             Destroy(cloneBody, 10.0f);
         }
         if (rightArmVanish == true && leftLegVanish == true)
         {
             GameObject cloneBody = GameObject.Instantiate(NoRightArmNoLeftLeg, parent.transform.position, parent.transform.rotation);
             Destroy(bodyToVanish);
+            deathSound.Play();
             Destroy(cloneBody, 10.0f);
         }
         if (leftArmVanish == true && leftLegVanish == true)
         {
             GameObject cloneBody = GameObject.Instantiate(NoLeftArmNoLeftLeg, parent.transform.position, parent.transform.rotation);
             Destroy(bodyToVanish);
+            deathSound.Play();
             Destroy(cloneBody, 10.0f);
         }
         if (leftArmVanish == true && rightLegVanish == true)
         {
             GameObject cloneBody = GameObject.Instantiate(NoLeftArmNoLeftLeg, parent.transform.position, parent.transform.rotation);
             Destroy(bodyToVanish);
+            deathSound.Play();
             Destroy(cloneBody, 10.0f);
         }
         if (leftLegVanish == true && rightLegVanish == true)
         {
             GameObject cloneBody = GameObject.Instantiate(NoLegs, parent.transform.position, parent.transform.rotation);
             Destroy(bodyToVanish);
+            deathSound.Play();
             Destroy(cloneBody, 10.0f);
         }
 

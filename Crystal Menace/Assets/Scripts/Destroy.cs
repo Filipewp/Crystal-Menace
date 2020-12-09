@@ -22,7 +22,12 @@ public class Destroy : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            Destroy(GameObject.FindGameObjectWithTag("Enemy"));
+            GameObject[] names = GameObject.FindGameObjectsWithTag("Enemy");
+
+            foreach (GameObject item in names)
+            {
+                Destroy(item);
+            }
             doorControl.GetComponent<DoorController>().Locked = true;
             doorControl.GetComponentInChildren<Animator>().SetTrigger("OpenClose");
             DoorSound.Play();

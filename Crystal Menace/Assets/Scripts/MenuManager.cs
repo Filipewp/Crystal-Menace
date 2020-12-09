@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
@@ -23,7 +24,7 @@ public class MenuManager : MonoBehaviour
     }
     public void QuitGame()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
+        
         Application.Quit();
     }
 }

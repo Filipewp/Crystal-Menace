@@ -10,6 +10,7 @@ public class SoundPlayer : MonoBehaviour
     public AudioClip[] dialogues4;
     public AudioClip[] dialogues5;
     public GameObject[] triggers;
+    public AudioSource gruntSound;
    
     public AudioSource adSource;
 
@@ -51,6 +52,7 @@ public class SoundPlayer : MonoBehaviour
 
         if (other.tag == "Trigger2")
         {
+            gruntSound.Play();
             //1.Loop through each AudioClip
             for (int i = 0; i < dialogues2.Length; i++)
             {
@@ -71,6 +73,7 @@ public class SoundPlayer : MonoBehaviour
 
         if (other.tag == "Trigger3")
         {
+           
             //1.Loop through each AudioClip
             for (int i = 0; i < dialogues3.Length; i++)
             {
@@ -87,6 +90,7 @@ public class SoundPlayer : MonoBehaviour
                     yield return null;
                 }
             }
+            
         }
         if (other.tag == "Trigger4")
         {

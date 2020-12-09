@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Target : MonoBehaviour
 {
@@ -21,7 +23,9 @@ public class Target : MonoBehaviour
 
     public bool isPlayer = false;
 
-
+    public checkPoint check;
+    public checkPoint2 check2;
+    
     void Start()
     {
         
@@ -185,6 +189,7 @@ public class Target : MonoBehaviour
             hpModule8.SetColor("_BaseColor", Color.black);
             hpModule9.SetColor("_BaseColor", Color.black);
             hpModule10.SetColor("_BaseColor", Color.black);
+            Die();
         }
     }
     public void TakeDamage(int amount)
@@ -208,6 +213,21 @@ public class Target : MonoBehaviour
         else
         {
             Debug.Log("Dead");
+            
+            bool respawn = check.check1;
+            bool respawn2 = check2.check2;
+           
+            if (respawn == true && respawn2 == false) 
+            {
+                SceneManager.LoadScene(4);
+            }
+            
+            if (respawn2 == true )
+            {
+                SceneManager.LoadScene(5);
+            }
+            
+           
         }
           
 

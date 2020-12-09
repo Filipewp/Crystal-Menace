@@ -12,7 +12,7 @@ public class OnShoot : MonoBehaviour
     public float radius = 5.0f;
     public float upForce = 1.0f;
     Collider coll;
-
+    public AudioSource crystalSound;
     public Rigidbody[] ragdoll;
 
     public int currentHealth;
@@ -57,6 +57,7 @@ public class OnShoot : MonoBehaviour
             headGone.headVanish = true;
             //Destroy(parent, 10.0f);
             Destroy(clone, 10.0f);
+            crystalSound.Play();
            //Destroy(cloneBody, 10.0f);
            
             

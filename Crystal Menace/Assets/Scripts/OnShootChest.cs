@@ -30,7 +30,8 @@ public class OnShootChest : MonoBehaviour
     public GameObject Mainbody;
     public GameObject bodyToVanish;
     public AIRagdoll chestGone;
-
+    public AudioSource crystalSound;
+    public AudioSource deathSound;
     //public Canvas canv;
 
     public float health = 50f;
@@ -63,6 +64,7 @@ public class OnShootChest : MonoBehaviour
             GameObject clone6 = GameObject.Instantiate(leftLeg, parent.transform.position, parent.transform.rotation);
             chestGone.chestVanish = true;
             //Destroy(parent, 10.0f);
+           
             Destroy(clone, 10.0f);
             Destroy(clone1, 10.0f);
             Destroy(clone2, 10.0f);
@@ -70,6 +72,8 @@ public class OnShootChest : MonoBehaviour
             Destroy(clone4, 10.0f);
             Destroy(clone5, 10.0f);
             Destroy(clone6, 10.0f);
+            crystalSound.Play();
+            deathSound.Play();
             Destroy(bodyToVanish);
             //Destroy(cloneBody, 10.0f);
 

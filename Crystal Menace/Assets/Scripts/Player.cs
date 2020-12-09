@@ -26,18 +26,18 @@ public class Player : MonoBehaviour
     public AudioSource audSource;
     public AudioSource audSource2;
     public GameObject trigger;
+    public GameObject triggerCard;
     public AudioSource DoorSound;
 
     public GameObject spawn1;
-    public GameObject spawn2;
+    
     public GameObject spawn3;
-    public GameObject spawn4;
-    public GameObject spawn5;
+   
+   
     public GameObject spawn6;
-    public GameObject spawn7;
+  
     public GameObject spawn8;
-    public GameObject spawn9;
-    public GameObject spawn10;
+   
     public GameObject spawn11;
     public GameObject EnemyPawn;
 
@@ -51,9 +51,9 @@ public class Player : MonoBehaviour
     public Transform prefab;
 
 
-    bool change1 = false;
-    bool change2 = false;
-    bool change3 = false;
+    //bool change1 = false;
+    //bool change2 = false;
+    //bool change3 = false;
 
     void Start()
     {
@@ -176,19 +176,20 @@ public class Player : MonoBehaviour
             ElevatorUnlock = Elevator.GetComponent<DoorController>();
             if (Input.GetKeyDown(KeyCode.E))
             {
+                instructions.SetActive(false);
+                triggerCard.SetActive(false);
                 DoorUnlock.Locked = false;
                 ElevatorUnlock.Locked = false;
                 Destroy(Card);
                 GameObject clone1 = GameObject.Instantiate(EnemyPawn, spawn1.transform.position, spawn1.transform.rotation);
-                GameObject clone2 = GameObject.Instantiate(EnemyPawn, spawn2.transform.position, spawn2.transform.rotation);
+           
                 GameObject clone3 = GameObject.Instantiate(EnemyPawn, spawn3.transform.position, spawn3.transform.rotation);
-                GameObject clone4 = GameObject.Instantiate(EnemyPawn, spawn4.transform.position, spawn4.transform.rotation);
-                GameObject clone5 = GameObject.Instantiate(EnemyPawn, spawn5.transform.position, spawn5.transform.rotation);
+               
+               
                 GameObject clone6 = GameObject.Instantiate(EnemyPawn, spawn6.transform.position, spawn6.transform.rotation);
-                GameObject clone7 = GameObject.Instantiate(EnemyPawn, spawn7.transform.position, spawn7.transform.rotation);
+              
                 GameObject clone8 = GameObject.Instantiate(EnemyPawn, spawn8.transform.position, spawn8.transform.rotation);
-                GameObject clone9 = GameObject.Instantiate(EnemyPawn, spawn9.transform.position, spawn9.transform.rotation);
-                GameObject clone10 = GameObject.Instantiate(EnemyPawn, spawn10.transform.position, spawn10.transform.rotation);
+              
             }
         }
         if (other.tag == "Symb")
