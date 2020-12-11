@@ -14930,7 +14930,7 @@ MonoBehaviour:
   mr: {fileID: 2032798504}
   speed: 2
   dialoguesSymb: {fileID: 8300000, guid: 94620718b13eb2d4dbd89c03fc8f2ca2, type: 3}
-  Scene: 2
+  Scene: 3
   audSource: {fileID: 2032798508}
 --- !u!82 &2032798508
 AudioSource:

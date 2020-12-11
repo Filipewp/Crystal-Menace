@@ -219,12 +219,12 @@ public class Target : MonoBehaviour
            
             if (respawn == true && respawn2 == false) 
             {
-                SceneManager.LoadScene(4);
+                SceneManager.LoadScene(5);
             }
             
             if (respawn2 == true )
             {
-                SceneManager.LoadScene(5);
+                SceneManager.LoadScene(6);
             }
             
            

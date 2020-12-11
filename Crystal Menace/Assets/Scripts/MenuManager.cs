@@ -16,15 +16,22 @@ public class MenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
     }
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
     public void QuitGame()
     {
         
         Application.Quit();
+    }
+
+    public void LoadMenu()
+    {
+        
+        SceneManager.LoadScene(1);
     }
 }

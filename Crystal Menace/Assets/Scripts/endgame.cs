@@ -20,7 +20,11 @@ public class endgame : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            SceneManager.LoadScene(6);
+           
+
+            SceneManager.LoadScene(7);
+           
+
         }
     }
 }
